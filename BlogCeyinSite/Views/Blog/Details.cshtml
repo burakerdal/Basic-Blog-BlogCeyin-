@@ -1,0 +1,33 @@
+﻿@model BlogCeyinSite.Models.Blog
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1>@Model.Title</h1>
+            <hr />
+            <p>@Model.SubmitTime @Model.Author</p>
+            <hr />
+            <img class="img-responsive" src="http://placehold.it/1200x300" alt="" />
+            
+            <hr />
+            <blockquote>
+                <p>@Model.Description</p>
+            </blockquote>
+            <p>@Model.Content</p>
+
+            <p>
+                @if (User.Identity.Name.Equals(Model.Author))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-default btn-xs" })
+                    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-danger btn-xs" })
+
+                }
+
+            </p>
+        </div>
+    </div>
+
+

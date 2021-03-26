@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BlogCeyinSite.Models.CategoryModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Category List</h2>
+
+<hr />
+
+@if (TempData["Category"] != null)
+{
+    var category = (BlogCeyinSite.Models.Category)TempData["Category"];
+
+<div class="alert alert-success" role="alert">
+    @category.CategoryName updated @DateTime.Now
+</div>
+}
+
+<table class="table table-bordered table-hover table-striped">
+    <tr>
+        <th style="width:250px">
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th style="width:50px">
+            @Html.DisplayNameFor(model => model.BlogCount)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(@item.CategoryName, "Edit", new { id = item.Id }, new { @class = "btn btn-default btn-xs" })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BlogCount)
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("New Category", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
